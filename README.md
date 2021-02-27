@@ -1,2 +1,2 @@
 # ViventorApiWrapper
-(unofficial)
+unofficial viventor api wrapper (python)
