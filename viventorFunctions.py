@@ -2,15 +2,16 @@ import requests, json
 
 class viventor:
 
-    def __init__(self, username, password):
-       self.username = username
-       self.password = password
+    def __init__(self):
+       #self.username = username
+       #self.password = password
        self.base_url = 'https://api.viventor.com/api/ia'
-       self.token = self.login()
+       #self.token = self.login(username, password)
+       self.token = ''
 
-    def login (self,):
+    def login (self,username, password):
         failureKeys = ['BAD_CREDENTIALS', 'NOT_EMPTY']
-        data = {"email": self.username, "password": self.password, "web": True}
+        data = {"email": username, "password": password, "web": True}
         endpoint = '/clients/authentication'
 
         resp = requests.post(self.base_url + endpoint, json=data)
@@ -19,7 +20,7 @@ class viventor:
             return 'login failed'
 
         jsn = json.loads(resp.text)
-        print (jsn['token'])
+        self.token = jsn['token']
         return jsn['token']
 
 
